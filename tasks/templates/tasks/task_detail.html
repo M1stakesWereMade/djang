@@ -1,0 +1,15 @@
+<h2>{{ task.title }}</h2>
+<p>{{ task.description }}</p>
+
+<h3>Комментарии:</h3>
+<ul>
+    {% for comment in task.comments.all %}
+        <li>{{ comment.user.username }}: {{ comment.content }} ({{ comment.created_at }})</li>
+    {% endfor %}
+</ul>
+
+<form method="POST">
+    {% csrf_token %}
+    <textarea name="comment" placeholder="Добавьте комментарий"></textarea>
+    <button type="submit">Отправить</button>
+</form>
